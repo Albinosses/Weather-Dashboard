@@ -1,0 +1,27 @@
+.weatherContainer {
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.weatherInfo {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.weatherInfo p {
+  margin: 10px 0;
+}
+
+.forecastContainer {
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.image_button {
+  width: 2rem;
+  height: 2rem;
+}

@@ -1,0 +1,7 @@
+.container {
+  margin: 5px;
+  width: 12rem;
+  border-radius: 1rem;
+  border: 2px solid black;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+}
