@@ -76,7 +76,7 @@ export const loader = async ({ request }) => {
     `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
   );
 
-  if (response.ok) {
+  if (!response.ok) {
     throw json({ message: "Could not fetch weather data" }, { status: 500 });
   } else {
     return response;
