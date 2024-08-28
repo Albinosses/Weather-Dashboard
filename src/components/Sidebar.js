@@ -5,8 +5,6 @@ import styles from "./Sidebar.module.css";
 const Sidebar = () => {
   const favourites = useSelector((state) => state.favourites);
 
-  console.log(favourites);
-
   return (
     <div className={styles.container}>
       <h1>Favourites</h1>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { weatherActions } from "../store";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearchSubmit }) => {
   const [query, setQuery] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,6 +38,7 @@ const SearchBar = () => {
     }
 
     setLoading(false);
+    onSearchSubmit();
   };
 
   return (

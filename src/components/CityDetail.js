@@ -6,13 +6,11 @@ import ForecastItem from "./ForecastItem";
 import { useDispatch, useSelector } from "react-redux";
 import { weatherActions } from "../store";
 import { useState } from "react";
+import { json } from "react-router-dom";
 
 const CityDetail = () => {
   const selectedCity = useSelector((state) => state.selectedCity);
   const favourites = useSelector((state) => state.favourites);
-
-  console.log(selectedCity);
-  console.log(favourites);
 
   const [isFavourite, setIsFavourite] = useState(
     favourites.find(
@@ -74,7 +72,13 @@ export const loader = async ({ request }) => {
   const lat = url.searchParams.get("lat");
   const lon = url.searchParams.get("lon");
 
-  return await fetch(
+  const response = await fetch(
     `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
   );
+
+  if (response.ok) {
+    throw json({ message: "Could not fetch weather data" }, { status: 500 });
+  } else {
+    return response;
+  }
 };

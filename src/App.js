@@ -7,6 +7,7 @@ import { loader as cityDetailLoader } from "./components/CityDetail";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { weatherActions } from "./store";
+import ErrorPage from "./components/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     path: "/:city",
     element: <CityDetail />,
     loader: cityDetailLoader,
+    errorElement: <ErrorPage />,
   },
 ]);
 
