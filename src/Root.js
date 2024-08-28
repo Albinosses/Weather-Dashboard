@@ -12,7 +12,13 @@ const Root = () => {
       <Sidebar />
       <div className={styles.container}>
         <SearchBar />
-        <CitiesList cities={searchedCities} />
+        {searchedCities.length === 0 ? (
+          <p className={styles["no-results"]}>
+            No results. Please, check your spelling and try again.
+          </p>
+        ) : (
+          <CitiesList cities={searchedCities} />
+        )}
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ import { weatherActions } from "../store";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   const handleChangeInput = (e) => {
@@ -12,26 +14,50 @@ const SearchBar = () => {
   };
 
   const handleSubmit = async () => {
-    const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${process.env.REACT_APP_API_KEY}`
-    );
-    const data = await response.json();
+    setLoading(true);
+    setError(null);
 
-    dispatch(weatherActions.setSearchedCities(data));
+    try {
+      if (!query) {
+        throw new Error("Please enter a city name.");
+      }
+
+      const response = await fetch(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${process.env.REACT_APP_API_KEY}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch data. Please try again.");
+      }
+
+      const data = await response.json();
+
+      dispatch(weatherActions.setSearchedCities(data));
+    } catch (error) {
+      setError(error);
+    }
+
+    setLoading(false);
   };
 
   return (
     <div className={styles.container}>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={query}
-        onChange={handleChangeInput}
-        className={styles.searchInput}
-      />
-      <button className={styles.searchButton} onClick={handleSubmit}>
-        Search
-      </button>
+      <div className={styles.searchBarContainer}>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={query}
+          onChange={handleChangeInput}
+          className={styles.searchInput}
+        />
+        <button className={styles.searchButton} onClick={handleSubmit}>
+          Search
+        </button>
+      </div>
+      <div className={styles.statusContainer}>
+        {isLoading && <div className={styles.loadingIndicator}>Loading...</div>}
+        {error && <div className={styles.errorMessage}>{error.message}</div>}
+      </div>
     </div>
   );
 };
