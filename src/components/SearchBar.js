@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { weatherActions } from "../store";
 
-const SearchBar = (props) => {
+const SearchBar = () => {
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ const SearchBar = (props) => {
   };
 
   return (
-    <div style={{ padding: "1rem" }}>
+    <div className={styles.container}>
       <input
         type="text"
         placeholder="Search..."

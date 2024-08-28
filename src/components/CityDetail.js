@@ -3,16 +3,37 @@ import filled_star from "../assets/filled_star.png";
 import empty_star from "../assets/empty_star.png";
 import styles from "./CityDetail.module.css";
 import ForecastItem from "./ForecastItem";
+import { useDispatch, useSelector } from "react-redux";
+import { weatherActions } from "../store";
+import { useState } from "react";
 
 const CityDetail = () => {
+  const selectedCity = useSelector((state) => state.selectedCity);
+  const favourites = useSelector((state) => state.favourites);
+
+  console.log(selectedCity);
+  console.log(favourites);
+
+  const [isFavourite, setIsFavourite] = useState(
+    favourites.find(
+      (city) => JSON.stringify(city) === JSON.stringify(selectedCity)
+    )
+  );
+
   const { city } = useParams();
   const loaderData = useLoaderData();
+  const dispatch = useDispatch();
 
-  let currentfavourite = false;
-
-  const handleToggleFavourite = () => {};
-
-  console.log(loaderData);
+  const handleToggleFavourite = () => {
+    setIsFavourite((prevIsFavourite) => {
+      if (prevIsFavourite) {
+        dispatch(weatherActions.removeFavourite(selectedCity));
+      } else {
+        dispatch(weatherActions.addFavourite(selectedCity));
+      }
+      return !prevIsFavourite;
+    });
+  };
 
   return (
     <div className={styles.weatherContainer}>
@@ -20,8 +41,8 @@ const CityDetail = () => {
         Current Weather in {city}{" "}
         <img
           className={styles.image_button}
-          src={currentfavourite ? filled_star : empty_star}
-          alt="filled star"
+          src={isFavourite ? filled_star : empty_star}
+          alt="favourite"
           onClick={handleToggleFavourite}
         />
       </h1>

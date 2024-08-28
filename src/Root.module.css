@@ -1,0 +1,13 @@
+.root-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20rem;
+  box-sizing: border-box;
+}
+
+.container {
+  flex-grow: 1;
+  margin: 10px;
+  padding: 1rem;
+  overflow-y: auto;
+}

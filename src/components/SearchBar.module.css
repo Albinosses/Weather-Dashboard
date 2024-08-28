@@ -1,5 +1,13 @@
+.container {
+  margin: auto;
+  width: 20rem;
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
 .searchInput {
-  width: 30%;
+  width: 15rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid #ccc;
@@ -7,6 +15,7 @@
 
 .searchButton {
   padding: 0.5rem 1rem;
+  width: 5rem;
   border-radius: 0.5rem;
   border: 1px solid #ccc;
   background-color: #f0f3f4;

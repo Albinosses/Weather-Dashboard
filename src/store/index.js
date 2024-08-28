@@ -2,8 +2,8 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchedCities: [],
-  selectedCity: [],
-  cachedCities: [],
+  selectedCity: undefined,
+  favourites: [],
 };
 
 const weatherSlice = createSlice({
@@ -16,8 +16,20 @@ const weatherSlice = createSlice({
     setSelectedCity(state, action) {
       state.selectedCity = action.payload;
     },
-    setCachedCities(state, action) {
-      state.cachedCities = action.payload;
+    setFavourites(state, action) {
+      state.favourites = action.payload;
+    },
+    addFavourite(state, action) {
+      if (!state.favourites.includes(action.payload)) {
+        state.favourites.push(action.payload);
+      }
+      localStorage.setItem("favouriteCities", JSON.stringify(state.favourites));
+    },
+    removeFavourite(state, action) {
+      state.favourites = state.favourites.filter(
+        (city) => JSON.stringify(city) !== JSON.stringify(action.payload)
+      );
+      localStorage.setItem("favouriteCities", JSON.stringify(state.favourites));
     },
   },
 });
