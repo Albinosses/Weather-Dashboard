@@ -14,7 +14,6 @@ import { useLocation } from "react-router-dom";
 const CityWeatherDetail = () => {
   const location = useLocation();
   const selectedCity = location.state;
-  // const selectedCity = useSelector((state) => state.selectedCity);
   const favourites = useSelector((state) => state.favourites);
 
   const [isFavourite, setIsFavourite] = useState(
