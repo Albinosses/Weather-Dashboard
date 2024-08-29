@@ -5,8 +5,7 @@ import Sidebar from "./components/Sidebar";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigation } from "react-router-dom";
-import "../node_modules/rsuite/dist/rsuite.min.css";
-import { Loader } from "rsuite";
+import CustomLoader from "./components/CustomLoader";
 
 const Root = () => {
   const navigation = useNavigation();
@@ -32,14 +31,7 @@ const Root = () => {
           )}
         </div>
       </div>
-      {navigation.state === "loading" && (
-        <Loader
-          style={{ position: "fixed", zIndex: 1000 }}
-          size="lg"
-          backdrop
-          content="Loading your weather"
-        />
-      )}
+      {navigation.state === "loading" && <CustomLoader />}
     </>
   );
 };
