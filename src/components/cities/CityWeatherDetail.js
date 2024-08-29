@@ -9,7 +9,7 @@ import { useState } from "react";
 import { json } from "react-router-dom";
 import { fetchWeather } from "../../api/funcs/fetchWeather";
 
-const CityDetail = () => {
+const CityWeatherDetail = () => {
   const selectedCity = useSelector((state) => state.selectedCity);
   const favourites = useSelector((state) => state.favourites);
 
@@ -65,7 +65,7 @@ const CityDetail = () => {
   );
 };
 
-export default CityDetail;
+export default CityWeatherDetail;
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
