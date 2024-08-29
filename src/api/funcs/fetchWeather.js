@@ -1,4 +1,4 @@
-import apiRequest from "../hooks/apiRequest";
+import apiRequest from "../apiRequest";
 
 export const fetchWeather = async (lat, lon) => {
   const { data, error } = await apiRequest(
