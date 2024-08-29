@@ -8,6 +8,7 @@ import { weatherActions } from "../../store";
 import { useState } from "react";
 import { json } from "react-router-dom";
 import { fetchWeather } from "../../api/funcs/fetchWeather";
+import { Link } from "react-router-dom";
 
 const CityWeatherDetail = () => {
   const selectedCity = useSelector((state) => state.selectedCity);
@@ -35,33 +36,42 @@ const CityWeatherDetail = () => {
   };
 
   return (
-    <div className={styles.weatherContainer}>
-      <h1>
-        Current Weather in {city}{" "}
-        <img
-          className={styles.image_button}
-          src={isFavourite ? filled_star : empty_star}
-          alt="favourite"
-          onClick={handleToggleFavourite}
-        />
-      </h1>
+    <>
+      <Link to="/" className={styles.link}>
+        &larr; Go back
+      </Link>
+      <div className={styles.weatherContainer}>
+        <h1>
+          Current Weather in {city}{" "}
+          <div className={styles.image_button} onClick={handleToggleFavourite}>
+            <img
+              className={styles.image}
+              src={isFavourite ? filled_star : empty_star}
+              alt={isFavourite ? "remove from favourites" : "Add to favourites"}
+            />
+            <p className={styles.label}>
+              {isFavourite ? "Remove from favourites" : "Add to favourites"}
+            </p>
+          </div>
+        </h1>
 
-      <div className={styles.weatherInfo}>
-        <h3>
-          <i>{loaderData.current.weather[0].description}</i>
-        </h3>
-        <p>Temperature: {Math.round(loaderData.current.temp)}°C</p>
-        <p>Humidity: {loaderData.current.humidity}%</p>
-        <p>Wind Speed: {loaderData.current.wind_speed} m/s</p>
+        <div className={styles.weatherInfo}>
+          <h3>
+            <i>{loaderData.current.weather[0].description}</i>
+          </h3>
+          <p>Temperature: {Math.round(loaderData.current.temp)}°C</p>
+          <p>Humidity: {loaderData.current.humidity}%</p>
+          <p>Wind Speed: {loaderData.current.wind_speed} m/s</p>
+        </div>
+        <br />
+        <h1>5-Day Forecast</h1>
+        <div className={styles.forecastContainer}>
+          {loaderData.daily.slice(0, 5).map((day, idx) => (
+            <ForecastItem key={idx} day={day} />
+          ))}
+        </div>
       </div>
-      <br />
-      <h1>5-Day Forecast</h1>
-      <div className={styles.forecastContainer}>
-        {loaderData.daily.slice(0, 5).map((day, idx) => (
-          <ForecastItem key={idx} day={day} />
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
