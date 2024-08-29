@@ -1,7 +1,7 @@
 import styles from "./CityCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { weatherActions } from "../store";
+import { weatherActions } from "../../store";
 
 const CityCard = ({ city, index }) => {
   const dispatch = useDispatch();

@@ -1,5 +1,7 @@
 # Starting Application
 
+## Recuired Node.js v20.17.0 installed on your machine
+
 In order to start this application, open terminal in root folder and enter these commands:
 
 ### `npm install`

@@ -1,13 +1,13 @@
 import { useLoaderData, useParams } from "react-router-dom";
-import filled_star from "../assets/filled_star.png";
-import empty_star from "../assets/empty_star.png";
+import filled_star from "../../assets/filled_star.png";
+import empty_star from "../../assets/empty_star.png";
 import styles from "./CityDetail.module.css";
-import ForecastItem from "./ForecastItem";
+import ForecastItem from "../forecast/ForecastItem";
 import { useDispatch, useSelector } from "react-redux";
-import { weatherActions } from "../store";
+import { weatherActions } from "../../store";
 import { useState } from "react";
 import { json } from "react-router-dom";
-import { fetchWeather } from "../api/funcs/fetchWeather";
+import { fetchWeather } from "../../api/funcs/fetchWeather";
 
 const CityDetail = () => {
   const selectedCity = useSelector((state) => state.selectedCity);

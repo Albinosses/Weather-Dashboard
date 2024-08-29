@@ -1,5 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+const weather = "weather";
+
 const initialState = {
   searchedCities: [],
   selectedCity: undefined,
@@ -7,7 +9,7 @@ const initialState = {
 };
 
 const weatherSlice = createSlice({
-  name: "weather",
+  name: weather,
   initialState,
   reducers: {
     setSearchedCities(state, action) {

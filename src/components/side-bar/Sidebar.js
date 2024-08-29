@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import CitiesList from "./CitiesList";
+import CitiesList from "../cities/CitiesList";
 import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {

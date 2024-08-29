@@ -1,4 +1,4 @@
-const apiRequest = async (url, method, headers) => {
+const apiRequestHook = async (url, method, headers) => {
   const result = {
     error: null,
     data: null,
@@ -44,4 +44,4 @@ const apiRequest = async (url, method, headers) => {
   }
 };
 
-export default apiRequest;
+export default apiRequestHook;

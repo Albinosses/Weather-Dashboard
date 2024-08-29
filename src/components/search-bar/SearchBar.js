@@ -1,8 +1,8 @@
 import styles from "./SearchBar.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { weatherActions } from "../store";
-import { fetchCities } from "../api/funcs/fetchCities";
+import { weatherActions } from "../../store";
+import { fetchCities } from "../../api/funcs/fetchCities";
 
 const SearchBar = ({ onSearchSubmit }) => {
   const [query, setQuery] = useState("");

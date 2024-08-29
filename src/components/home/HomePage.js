@@ -1,13 +1,13 @@
-import CitiesList from "./components/CitiesList";
-import SearchBar from "./components/SearchBar";
+import CitiesList from "../cities/CitiesList";
+import SearchBar from "../search-bar/SearchBar";
 import styles from "./Root.module.css";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "../side-bar/Sidebar";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigation } from "react-router-dom";
-import CustomLoader from "./components/CustomLoader";
+import CustomLoader from "../common/CustomLoader";
 
-const Root = () => {
+const HomePage = () => {
   const navigation = useNavigation();
   const [hasSearched, setHasSearched] = useState(false);
   const searchedCities = useSelector((state) => state.searchedCities);
@@ -32,4 +32,4 @@ const Root = () => {
   );
 };
 
-export default Root;
+export default HomePage;
