@@ -12,16 +12,12 @@ const Root = () => {
   const [hasSearched, setHasSearched] = useState(false);
   const searchedCities = useSelector((state) => state.searchedCities);
 
-  const handleSearchSubmit = () => {
-    setHasSearched(true);
-  };
-
   return (
     <>
       <div className={styles["root-container"]}>
         <Sidebar />
         <div className={styles.container}>
-          <SearchBar onSearchSubmit={handleSearchSubmit} />
+          <SearchBar onSearchSubmit={setHasSearched} />
           {hasSearched && searchedCities.length === 0 ? (
             <p className={styles["no-results"]}>
               No results. Please, check your spelling and try again.

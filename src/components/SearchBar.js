@@ -2,6 +2,7 @@ import styles from "./SearchBar.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { weatherActions } from "../store";
+import { fetchCities } from "../api/funcs/fetchCities";
 
 const SearchBar = ({ onSearchSubmit }) => {
   const [query, setQuery] = useState("");
@@ -17,28 +18,17 @@ const SearchBar = ({ onSearchSubmit }) => {
     setLoading(true);
     setError(null);
 
-    try {
-      if (!query) {
-        throw new Error("Please enter a city name.");
-      }
+    const { data, error } = await fetchCities(query);
 
-      const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${process.env.REACT_APP_API_KEY}`
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch data. Please try again.");
-      }
-
-      const data = await response.json();
-
-      dispatch(weatherActions.setSearchedCities(data));
-    } catch (error) {
+    if (error) {
       setError(error);
+      onSearchSubmit(false);
+    } else {
+      dispatch(weatherActions.setSearchedCities(data));
+      onSearchSubmit(true);
     }
 
     setLoading(false);
-    onSearchSubmit();
   };
 
   return (

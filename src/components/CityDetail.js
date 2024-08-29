@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { weatherActions } from "../store";
 import { useState } from "react";
 import { json } from "react-router-dom";
+import { fetchWeather } from "../api/funcs/fetchWeather";
 
 const CityDetail = () => {
   const selectedCity = useSelector((state) => state.selectedCity);
@@ -72,13 +73,11 @@ export const loader = async ({ request }) => {
   const lat = url.searchParams.get("lat");
   const lon = url.searchParams.get("lon");
 
-  const response = await fetch(
-    `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
-  );
+  const { data, error } = await fetchWeather(lat, lon);
 
-  if (!response.ok) {
+  if (error) {
     throw json({ message: "Could not fetch weather data" }, { status: 500 });
   } else {
-    return response;
+    return data;
   }
 };
