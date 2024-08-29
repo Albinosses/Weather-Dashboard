@@ -34,6 +34,7 @@
 
 .image_button:hover {
   background-color: #f0f3f4;
+  cursor: pointer;
 }
 
 .image {
