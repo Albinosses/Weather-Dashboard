@@ -5,6 +5,8 @@
   border-radius: 0.5rem;
   border: 1.5px solid black;
   text-align: center;
+  text-decoration: none;
+  color: black;
 }
 
 .card:hover {

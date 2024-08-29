@@ -9,9 +9,12 @@ import { useState } from "react";
 import { json } from "react-router-dom";
 import { fetchWeather } from "../../api/funcs/fetchWeather";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const CityWeatherDetail = () => {
-  const selectedCity = useSelector((state) => state.selectedCity);
+  const location = useLocation();
+  const selectedCity = location.state;
+  // const selectedCity = useSelector((state) => state.selectedCity);
   const favourites = useSelector((state) => state.favourites);
 
   const [isFavourite, setIsFavourite] = useState(
@@ -41,19 +44,17 @@ const CityWeatherDetail = () => {
         &larr; Go back
       </Link>
       <div className={styles.weatherContainer}>
-        <h1>
-          Current Weather in {city}{" "}
-          <div className={styles.image_button} onClick={handleToggleFavourite}>
-            <img
-              className={styles.image}
-              src={isFavourite ? filled_star : empty_star}
-              alt={isFavourite ? "remove from favourites" : "Add to favourites"}
-            />
-            <p className={styles.label}>
-              {isFavourite ? "Remove from favourites" : "Add to favourites"}
-            </p>
-          </div>
-        </h1>
+        <h1>Current Weather in {city} </h1>
+        <div className={styles.image_button} onClick={handleToggleFavourite}>
+          <img
+            className={styles.image}
+            src={isFavourite ? filled_star : empty_star}
+            alt={isFavourite ? "remove from favourites" : "Add to favourites"}
+          />
+          <p className={styles.label}>
+            {isFavourite ? "Remove from favourites" : "Add to favourites"}
+          </p>
+        </div>
 
         <div className={styles.weatherInfo}>
           <h3>

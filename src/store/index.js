@@ -4,7 +4,6 @@ const weather = "weather";
 
 const initialState = {
   searchedCities: [],
-  selectedCity: undefined,
   favourites: [],
 };
 
@@ -14,9 +13,6 @@ const weatherSlice = createSlice({
   reducers: {
     setSearchedCities(state, action) {
       state.searchedCities = action.payload;
-    },
-    setSelectedCity(state, action) {
-      state.selectedCity = action.payload;
     },
     setFavourites(state, action) {
       state.favourites = action.payload;
