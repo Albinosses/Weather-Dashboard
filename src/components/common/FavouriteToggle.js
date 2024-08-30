@@ -34,7 +34,7 @@ const FavouriteToggle = ({ isFavourite, onToggle }) => (
   <StyledButton onClick={onToggle}>
     <StyledImage
       src={isFavourite ? filled_star : empty_star}
-      alt={isFavourite ? "remove from favourites" : "Add to favourites"}
+      alt={isFavourite ? "Remove from favourites" : "Add to favourites"}
     />
     <StyledLabel>
       {isFavourite ? "Remove from favourites" : "Add to favourites"}

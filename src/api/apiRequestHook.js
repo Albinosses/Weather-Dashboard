@@ -1,3 +1,8 @@
+const errors = {
+  default: "An error occurred while processing your request.",
+  badResponse: "Could not get cities.",
+};
+
 const apiRequestHook = async (url, method, headers) => {
   const result = {
     error: null,
@@ -17,7 +22,7 @@ const apiRequestHook = async (url, method, headers) => {
       method === "GET" ? await fetch(url) : await fetch(url, requestOptions);
 
     if (!response.ok) {
-      throw new Error("Could not get cities.");
+      throw new Error(errors.badResponse);
     }
 
     const data = await response.json();
@@ -35,8 +40,7 @@ const apiRequestHook = async (url, method, headers) => {
     return result;
   } catch (error) {
     result.error = {
-      message:
-        error.message || "An error occurred while processing your request.",
+      message: error.message || errors.default,
     };
     result.loading = false;
 
