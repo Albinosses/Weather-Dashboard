@@ -3,6 +3,7 @@ const errors = {
   badResponse: "Could not get cities.",
 };
 
+//Universal request handler
 const apiRequestHook = async (url, method, headers) => {
   const result = {
     error: null,
