@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { weatherActions } from "../../store";
-import { fetchCities } from "../../api/utils/fetchCities";
+import { fetchCities } from "../../api/cities/cities.js";
 import styled from "styled-components";
 
 const StyledSearchBlock = styled.div`

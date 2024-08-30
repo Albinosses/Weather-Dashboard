@@ -1,6 +1,6 @@
 import { weatherActions } from "../../store";
 import { json } from "react-router-dom";
-import { fetchWeather } from "../../api/funcs/fetchWeather";
+import { fetchWeather } from "../../api/weather/weather.js";
 import { useLoaderData, useParams, Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
