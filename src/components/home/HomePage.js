@@ -1,11 +1,29 @@
 import CitiesList from "../cities/CitiesList";
 import SearchBar from "../search-bar/SearchBar";
-import styles from "./Root.module.css";
 import Sidebar from "../side-bar/Sidebar";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigation } from "react-router-dom";
 import CustomLoader from "../common/CustomLoader";
+import styled from "styled-components";
+
+const HomeWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20rem;
+  box-sizing: border-box;
+`;
+
+const SearchWrapper = styled.div`
+  flex-grow: 1;
+  margin: 10px;
+  padding: 1rem;
+  overflow-y: auto;
+`;
+
+const StyledParahraph = styled.p`
+  text-align: center;
+`;
 
 const HomePage = () => {
   const navigation = useNavigation();
@@ -14,19 +32,19 @@ const HomePage = () => {
 
   return (
     <>
-      <div className={styles["root-container"]}>
+      <HomeWrapper>
         <Sidebar />
-        <div className={styles.container}>
+        <SearchWrapper>
           <SearchBar onSearchSubmit={setHasSearched} />
           {hasSearched && searchedCities.length === 0 ? (
-            <p className={styles["no-results"]}>
+            <StyledParahraph>
               No results. Please, check your spelling and try again.
-            </p>
+            </StyledParahraph>
           ) : (
             <CitiesList cities={searchedCities} />
           )}
-        </div>
-      </div>
+        </SearchWrapper>
+      </HomeWrapper>
       {navigation.state === "loading" && <CustomLoader />}
     </>
   );
