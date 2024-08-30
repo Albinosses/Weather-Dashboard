@@ -9,15 +9,17 @@ const WeatherForecastContainer = styled.div`
   margin-top: 20px;
 `;
 
-const WeatherForecast = ({ forecast }) => (
-  <>
-    <h1>5-Day Forecast</h1>
-    <WeatherForecastContainer>
-      {forecast.slice(0, 5).map((day, idx) => (
-        <ForecastItem key={idx} day={day} />
-      ))}
-    </WeatherForecastContainer>
-  </>
-);
+const WeatherForecast = ({ forecast }) => {
+  return (
+    <>
+      <h1>5-Day Forecast</h1>
+      <WeatherForecastContainer>
+        {forecast.slice(0, 5).map((day, idx) => (
+          <ForecastItem key={idx} day={day} />
+        ))}
+      </WeatherForecastContainer>
+    </>
+  );
+};
 
 export default WeatherForecast;

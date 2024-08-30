@@ -8,15 +8,17 @@ const WeatherInfoWrapper = styled.div`
   }
 `;
 
-const CurrentWeather = ({ weather }) => (
-  <WeatherInfoWrapper>
-    <h3>
-      <i>{weather.weather[0].description}</i>
-    </h3>
-    <p>Temperature: {Math.round(weather.temp)}°C</p>
-    <p>Humidity: {weather.humidity}%</p>
-    <p>Wind Speed: {weather.wind_speed} m/s</p>
-  </WeatherInfoWrapper>
-);
+const CurrentWeather = ({ weather }) => {
+  return (
+    <WeatherInfoWrapper>
+      <h3>
+        <i>{weather.weather[0].description}</i>
+      </h3>
+      <p>Temperature: {Math.round(weather.temp)}°C</p>
+      <p>Humidity: {weather.humidity}%</p>
+      <p>Wind Speed: {weather.wind_speed} m/s</p>
+    </WeatherInfoWrapper>
+  );
+};
 
 export default CurrentWeather;

@@ -30,16 +30,18 @@ const StyledLabel = styled.p`
   margin-top: 0.2rem;
 `;
 
-const FavouriteToggle = ({ isFavourite, onToggle }) => (
-  <StyledButton onClick={onToggle}>
-    <StyledImage
-      src={isFavourite ? filled_star : empty_star}
-      alt={isFavourite ? "Remove from favourites" : "Add to favourites"}
-    />
-    <StyledLabel>
-      {isFavourite ? "Remove from favourites" : "Add to favourites"}
-    </StyledLabel>
-  </StyledButton>
-);
+const FavouriteToggle = ({ isFavourite, onToggle }) => {
+  return (
+    <StyledButton onClick={onToggle}>
+      <StyledImage
+        src={isFavourite ? filled_star : empty_star}
+        alt={isFavourite ? "Remove from favourites" : "Add to favourites"}
+      />
+      <StyledLabel>
+        {isFavourite ? "Remove from favourites" : "Add to favourites"}
+      </StyledLabel>
+    </StyledButton>
+  );
+};
 
 export default FavouriteToggle;
